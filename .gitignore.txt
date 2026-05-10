@@ -1,0 +1,12 @@
+# Environnement virtuel
+venv/
+
+# Python cache
+**/__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# FICHIERS SENSIBLES (IMPORTANT)
+.env

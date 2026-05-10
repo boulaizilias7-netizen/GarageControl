@@ -1,0 +1,31 @@
+{% extends 'atelier/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">🗓️ Planning d'occupation des ponts</h2>
+
+<div class="row">
+    {% for rep in reparations %}
+    <div class="col-md-4 mb-3">
+        <div class="card border-warning shadow-sm">
+            <div class="card-header bg-warning text-dark fw-bold">
+                🚗 {{ rep.vehicule.immatriculation }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Type :</strong> {{ rep.type_panne.libelle }}<br>
+                    <strong>Travail :</strong> {{ rep.panne|truncatechars:50 }}<br>
+                    <strong>Durée prévue :</strong> {{ rep.duree_estimee }}
+                </p>
+            </div>
+            <div class="card-footer text-muted small">
+                Prévu le : {{ rep.date_reparation|date:"d/m/Y" }}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-success">
+        ✅ Tous les ponts sont libres ! Aucune réparation en attente.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

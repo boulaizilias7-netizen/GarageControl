@@ -1,0 +1,13 @@
+{% extends 'atelier/base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3 text-center shadow-sm">
+    <h1 class="display-5 fw-bold">Gestion d'Atelier GarageControl</h1>
+    <p class="fs-4">Sélectionnez une action pour commencer.</p>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="{% url 'liste_reparations' %}" class="btn btn-primary btn-lg">🔧 Voir Réparations</a>
+        <a href="{% url 'ajouter_reparation' %}" class="btn btn-success btn-lg">➕ Nouvelle Intervention</a>
+        <a href="{% url 'liste_vehicules' %}" class="btn btn-outline-dark btn-lg">🚗 Voir Véhicules</a>
+    </div>
+</div>
+{% endblock %}

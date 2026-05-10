@@ -1,0 +1,36 @@
+{% extends 'atelier/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 mt-5">
+            <div class="card-header bg-secondary text-white text-center">
+                <h4 class="mb-0">⚙️ Nouvelle Catégorie de Panne</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nom de la catégorie (ex: Électricité)</label>
+                        {{ form.libelle }}
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary">Enregistrer la catégorie</button>
+                        <a href="{% url 'liste_types_panne' %}" class="btn btn-link text-muted">Retour à la liste</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    input {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.375rem;
+    }
+</style>
+{% endblock %}
