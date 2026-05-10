@@ -8,7 +8,7 @@ from django.db.models import F
 
 @login_required
 def home(request):
-    """Page d'accueil du GarageControl."""
+
     return render(request, 'atelier/index.html')
 
 @login_required
@@ -33,13 +33,13 @@ def liste_reparations(request):
 
 @login_required
 def liste_vehicules(request):
-    """Affiche la liste des véhicules enregistrés[cite: 15]."""
+    
     vehicules = Vehicule.objects.all()
     return render(request, 'atelier/vehicules.html', {'vehicules': vehicules})
 
 @login_required
 def planning_ponts(request):
-    """Planification : suit la durée des travaux non validés."""
+    
     reparations_actives = Reparation.objects.filter(est_validee=False).order_by('date_reparation')
     return render(request, 'atelier/planning.html', {'reparations': reparations_actives})
 
@@ -49,7 +49,7 @@ def planning_ponts(request):
 @login_required
 @permission_required('atelier.add_reparation', raise_exception=True)
 def ajouter_reparation(request):
-    """Enregistre une nouvelle intervention[cite: 7]."""
+    
     if request.method == "POST":
         form = ReparationForm(request.POST)
         if form.is_valid():
@@ -62,7 +62,7 @@ def ajouter_reparation(request):
 @login_required
 @permission_required('atelier.change_reparation', raise_exception=True)
 def modifier_reparation(request, pk):
-    """Saisit les coûts et détails techniques[cite: 8]."""
+    
     reparation = get_object_or_404(Reparation, pk=pk)
     if request.method == "POST":
         form = ReparationForm(request.POST, instance=reparation)
@@ -76,7 +76,7 @@ def modifier_reparation(request, pk):
 @login_required
 @permission_required('atelier.add_vehicule', raise_exception=True)
 def ajouter_vehicule(request):
-    """Enregistre un nouveau véhicule à l'arrivée[cite: 7, 15]."""
+    
     if request.method == "POST":
         form = VehiculeForm(request.POST)
         if form.is_valid():
@@ -104,8 +104,7 @@ def modifier_vehicule(request, pk):
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
-def supprimer_reparation(request, pk):
-    """Seul l'admin peut supprimer une intervention."""
+def supprimer_reparation(request, pk)
     reparation = get_object_or_404(Reparation, pk=pk)
     if request.method == "POST":
         reparation.delete()
@@ -124,7 +123,7 @@ def supprimer_vehicule(request, pk):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def liste_types_panne(request):
-    """L'admin gère les catégories pour les statistiques[cite: 15]."""
+    
     types = TypePanne.objects.all()
     return render(request, 'atelier/types_panne.html', {'types': types})
 
